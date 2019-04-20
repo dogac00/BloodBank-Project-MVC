@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using BloodBank.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using BloodBank.Models;
 
 namespace BloodBank
 {
@@ -39,7 +40,7 @@ namespace BloodBank
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<BloodBankUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
