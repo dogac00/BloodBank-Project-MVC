@@ -7,13 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BloodBank.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<BloodBankUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-
-        public DbSet<BloodBankUser> BloodBankUsers { get; set; }
     }
 }
