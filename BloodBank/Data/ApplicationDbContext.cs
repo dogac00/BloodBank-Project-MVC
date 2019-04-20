@@ -13,5 +13,6 @@ namespace BloodBank.Data
             : base(options)
         {
         }
+        public DbSet<BloodBank.Models.Post> Post { get; set; }
     }
 }
