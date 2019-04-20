@@ -40,7 +40,7 @@ namespace BloodBank
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<BloodBankUser>()
+            services.AddDefaultIdentity<BloodBankUser>().AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

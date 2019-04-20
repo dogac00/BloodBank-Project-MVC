@@ -24,15 +24,31 @@
             </div>
             <div class="form-group">
                 <label asp-for="Input.City"></label>
-                <input asp-for="Input.City" class="form-control" />
+                <select asp-for="Input.City" class="custom-select">
+                    <option value="İstanbul">İstanbul</option>
+                    <option value="Ankara">Ankara</option>
+                    <option value="İzmir">İzmir</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="Input.DateOfBirth"></label>
-                <input asp-for="Input.DateOfBirth" class="form-control" />
+                <label asp-for="Input.Role"></label>
+                <select asp-for="Input.Role" class="custom-select">
+                    <option value="Donor">Donor</option>
+                    <option value="Recipient">Recipient</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Input.BloodType"></label>
-                <input asp-for="Input.BloodType" class="form-control" />
+                <select asp-for="Input.BloodType" class="custom-select">
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="0+">0+</option>
+                    <option value="0-">0-</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Input.Email"></label>

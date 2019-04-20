@@ -49,7 +49,6 @@ namespace BloodBank.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             public string City { get; set; }
-            public DateTime DateOfBirth { get; set; }
             public string Role { get; set; }
             public string BloodType { get; set; }
 
@@ -87,7 +86,6 @@ namespace BloodBank.Areas.Identity.Pages.Account
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     City = Input.City,
-                    DateOfBirth = Input.DateOfBirth,
                     Role = Input.Role,
                     BloodType = Input.BloodType
                 };

@@ -18,19 +18,37 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BloodType" class="control-label"></label>
-                <input asp-for="BloodType" class="form-control" />
-                <span asp-validation-for="BloodType" class="text-danger"></span>
+                <label asp-for="BloodType"></label>
+                <select asp-for="BloodType" class="custom-select">
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="0+">0+</option>
+                    <option value="0-">0-</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
+                <label asp-for="City"></label>
+                <select asp-for="City" class="custom-select">
+                    <option value="İstanbul">İstanbul</option>
+                    <option value="Ankara">Ankara</option>
+                    <option value="İzmir">İzmir</option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Category"></label>
+                <select asp-for="Category" class="custom-select">
+                    <option value="Normal">Normal</option>
+                    <option value="Urgent">Urgent</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

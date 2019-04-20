@@ -38,10 +38,13 @@
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Blood Posts</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Blood Posts</a>
+                            </li>
                         }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="UserManagement" asp-action="Index">User Manager</a>
+                        </li>
                     </ul>
                 </div>
             </div>

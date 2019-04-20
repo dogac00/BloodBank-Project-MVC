@@ -54,7 +54,7 @@ namespace BloodBank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,BloodType,City,Description")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,Title,BloodType,City,Description,Category")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace BloodBank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,BloodType,City,Description")] Post post)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,BloodType,City,Description,Category")] Post post)
         {
             if (id != post.Id)
             {
