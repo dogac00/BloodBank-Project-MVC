@@ -18,6 +18,13 @@
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="PostType"></label>
+                <select asp-for="PostType" class="custom-select">
+                    <option value="Recipient">Recipient</option>
+                    <option value="Donor">Donor</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label asp-for="BloodType"></label>
                 <select asp-for="BloodType" class="custom-select">
                     <option value="A+">A+</option>

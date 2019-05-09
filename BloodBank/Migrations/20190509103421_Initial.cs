@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BloodBank.Data.Migrations
+namespace BloodBank.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,11 +40,34 @@ namespace BloodBank.Data.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(maxLength: 100, nullable: false),
+                    LastName = table.Column<string>(maxLength: 100, nullable: false),
+                    City = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: true),
+                    BloodType = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Post",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Title = table.Column<string>(nullable: true),
+                    PostType = table.Column<string>(nullable: true),
+                    BloodType = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Post", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -209,6 +232,9 @@ namespace BloodBank.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Post");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

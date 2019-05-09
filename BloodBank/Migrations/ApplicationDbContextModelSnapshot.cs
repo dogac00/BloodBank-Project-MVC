@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BloodBank.Data.Migrations
+namespace BloodBank.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -97,6 +97,8 @@ namespace BloodBank.Data.Migrations
                     b.Property<string>("City");
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("PostType");
 
                     b.Property<string>("Title");
 

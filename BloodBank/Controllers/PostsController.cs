@@ -18,11 +18,15 @@ namespace BloodBank.Controllers
         {
             _context = context;
         }
-
-        // GET: Posts
-        public async Task<IActionResult> Index()
+        
+        public async Task<IActionResult> Donors()
         {
-            return View(await _context.Post.ToListAsync());
+            return View(await _context.Post.Where(p => p.PostType == "Donor").ToListAsync());
+        }
+
+        public async Task<IActionResult> Recipients()
+        {
+            return View(await _context.Post.Where(p => p.PostType == "Recipient").ToListAsync());
         }
 
         // GET: Posts/Details/5
@@ -54,13 +58,13 @@ namespace BloodBank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,BloodType,City,Description,Category")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,Title,PostType,BloodType,City,Description,Category")] Post post)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(post);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(post);
         }
@@ -111,7 +115,7 @@ namespace BloodBank.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Home");
             }
             return View(post);
         }
@@ -142,7 +146,7 @@ namespace BloodBank.Controllers
             var post = await _context.Post.FindAsync(id);
             _context.Post.Remove(post);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         private bool PostExists(int id)

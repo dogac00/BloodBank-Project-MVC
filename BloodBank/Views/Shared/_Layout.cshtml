@@ -39,7 +39,13 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Index">Blood Posts</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Recipients">Recipients Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Donors">Donors Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Create">Create Post</a>
                             </li>
                         }
                         <li class="nav-item">
