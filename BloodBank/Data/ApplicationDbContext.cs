@@ -14,5 +14,6 @@ namespace BloodBank.Data
         {
         }
         public DbSet<BloodBank.Models.Post> Post { get; set; }
+        public DbSet<BloodBank.Models.CityPoints> CityPoints { get; set; }
     }
 }

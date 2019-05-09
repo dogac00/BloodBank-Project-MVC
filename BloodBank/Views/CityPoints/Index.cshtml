@@ -1,0 +1,32 @@
+﻿@model IEnumerable<BloodBank.Models.CityPoints>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Click on the City to Show Blood Points</h1>
+
+@if (this.User.IsInRole("admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+@(await Component.InvokeAsync("TurkeyMap"))
+
+<br><br>
+
+@foreach (var item in Model)
+{
+    <div class="card d-inline-block" style="width: 18rem;">
+        <img class="card-img-top" style="width: 30%; position: relative; left: 30%; top: 10%;" src="~/img/blood-unit.png" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">@item.Title</h5>
+            <p class="card-text">@item.Address</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">@item.Phone</li>
+        </ul>
+    </div>
+}
