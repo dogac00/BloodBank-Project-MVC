@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BloodBank.Views.Shared.Components.BootstrapPopup
 {
-    public class TurkeyMapViewComponent : ViewComponent
+    public class PaymentSuccessfulViewComponent : ViewComponent
     {
         private readonly ApplicationDbContext _context;
 
-        public TurkeyMapViewComponent(ApplicationDbContext dbContext)
+        public PaymentSuccessfulViewComponent(ApplicationDbContext dbContext)
         {
             this._context = dbContext;
         }

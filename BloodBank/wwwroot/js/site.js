@@ -18,7 +18,7 @@ function retrieve() {
 
     $('.table-to-search tr').each(function () {
         if (contains($(this).children('td:first').text().toLowerCase(), searchedValue)
-            && (selectedValue == "All" || $(this).find('td:eq(1)').text().trim() == selectedValue)) {
+            && selectedValue == "All" || $(this).find('td:eq(1)').text().trim() == selectedValue) {
             $(this).show();
         }
         else {
