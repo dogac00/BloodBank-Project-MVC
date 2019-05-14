@@ -12,15 +12,25 @@ function contains(first, second) {
     }
 }
 
-$('.search-bar').keyup(function () {
-    var textToSearch = $('.search-bar').val().toLowerCase();
+function retrieve() {
+    var searchedValue = $('.search-bar').val().toLowerCase();
+    var selectedValue = $('.selection-bar').find(':selected').text();
+
     $('.table-to-search tr').each(function () {
-        var formName = $(this).children('td:first').text().trim().toLowerCase();
-        if (contains(formName, textToSearch)) {
+        if (contains($(this).children('td:first').text().toLowerCase(), searchedValue)
+            && (selectedValue == "All" || $(this).find('td:eq(1)').text().trim() == selectedValue)) {
             $(this).show();
         }
         else {
             $(this).hide();
         }
     });
+}
+
+$('.search-bar').keyup(function () {
+    retrieve();
+});
+
+$('.selection-bar').change(function () {
+    retrieve();
 });
