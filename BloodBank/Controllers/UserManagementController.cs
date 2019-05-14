@@ -48,6 +48,7 @@ namespace BloodBank.Controllers
 
                 userModelList.Add(user);
             }
+
             return View(userModelList);
         }
 
@@ -58,6 +59,7 @@ namespace BloodBank.Controllers
             {
                 await _roleManager.CreateAsync(new IdentityRole { Name = "admin" });
             }
+
             var user = await _userManager.FindByIdAsync(id);
             await _userManager.AddToRoleAsync(user, "admin");
             return RedirectToAction("index");
