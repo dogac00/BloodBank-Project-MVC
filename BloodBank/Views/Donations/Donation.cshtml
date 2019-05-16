@@ -10,10 +10,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" id="DonationForm">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
+                <label class="control-label">Amount (TL)</label>
                 <input asp-for="Amount" class="form-control" />
                 <span id="AmountValidation" class="text-danger"></span>
             </div>
@@ -74,24 +74,5 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('#NameOnCard').keyup(function () {
-            $(this).val($(this).val().toUpperCase());
-        });
 
-        $('#CreditCardNumber').keyup(function () {
-            var inputValue = $(this).val();
-            if (!$.isNumeric(inputValue) || inputValue.length != 16) {
-                $('#CreditCardValidation').text("Credit Card Number must be a 16 character number.");
-            }
-            else {
-                $('#CreditCardValidation').text("");
-            }
-        });
-    });
-
-    $('form').submit(function (e) {
-        console.log("it is prevented.");
-        e.preventDefault();
-    });
 </script>
