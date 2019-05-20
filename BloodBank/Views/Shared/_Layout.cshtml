@@ -5,10 +5,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BloodBank</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Coiffure Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- //Meta tag Keywords -->
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //Custom-Files -->
+    <!-- Web-Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+          rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Hind:300,400,500,600,700&amp;subset=devanagari,latin-ext" rel="stylesheet">
+    <!-- //Web-Fonts -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -19,46 +46,68 @@
               crossorigin="anonymous"
               integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
+
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BloodBank</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Recipients">Recipients Posts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Donors">Donors Posts</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Posts" asp-action="Create">Create Post</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CityPoints" asp-action="Index">Donor Points</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserManagement" asp-action="Index">User Manager</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Donations" asp-action="Donation">Make Donation</a>
-                        </li>
-                    </ul>
+    <!-- main banner -->
+    <div class="main-top" id="home">
+        <!-- header -->
+        <header>
+            <div class="container-fluid">
+                <div class="header d-md-flex justify-content-between align-items-center py-2 px-xl-3 px-2 mx-xl-5 mx-lg-3 mx-2">
+                    <!-- nav -->
+                    <div class="nav_w3ls">
+                        <nav>
+                            <label for="drop" class="toggle">Menu</label>
+                            <input type="checkbox" id="drop" />
+                            <ul class="menu">
+                                <li><a href="index.html" class="active">Home</a></li>
+                                <li><a href="#about">About Us</a></li>
+                                <li>
+                                    <!-- First Tier Drop Down -->
+                                    <label for="drop-2" class="toggle toogle-2">
+                                        Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
+                                    </label>
+                                    <a href="#">Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                    <input type="checkbox" id="drop-2" />
+                                    <ul>
+                                        <li><a href="#latest" class="drop-text">Latest Hairstyle</a></li>
+                                        <li><a href="#price" class="drop-text">Pricing Plan</a></li>
+                                        <li><a href="#services" class="drop-text">Hairstyle Services</a></li>
+                                        <li><a href="#blog" class="drop-text">Our Blog</a></li>
+                                        <li><a href="#testi" class="drop-text">Testimonials</a></li>
+                                        <li><a href="#what" class="drop-text">What We do?</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#services" class="drop-text">Services</a></li>
+                                <li><a href="#gallery">Gallery</a></li>
+                                <li><a href="#contact">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- //nav -->
+                    <!-- logo -->
+                    <div id="logo">
+                        <h1><a href="index.html">Coiffure</a></h1>
+                    </div>
+                    <!-- //logo -->
                 </div>
             </div>
-        </nav>
-    </header>
+        </header>
+        <!-- //header -->
+        <!-- banner -->
+        <div class="banner_w3lspvt">
+            <div class="container-fluid">
+                <div class="w3ls_banner_txt pl-sm-5">
+                    <h3 class="w3ls_pvt-title text-wh let">All <br> <span class="text-da">Hair</span> <br>Styles</h3>
+                </div>
+            </div>
+        </div>
+        <!-- //banner -->
+    </div>
+    <!-- //main banner -->
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
@@ -66,11 +115,121 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - BloodBank - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- footer -->
+    <footer class="py-5">
+        <div class="container py-xl-5 py-lg-3">
+            <div class="row pb-md-5 pb-4 mb-md-5 mb-4 foot-top-sty">
+                <!-- newsletter -->
+                <div class="col-md-5 newsletter pb-4">
+                    <p class="para-effects-style text-li mb-3">Subscribe to our newsletter</p>
+                    <form action="#" method="post">
+                        <div class="form-group mb-0 w-100">
+                            <input class="email" type="email" name="email" placeholder="Your email..." required="">
+                        </div>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+                <!-- //newsletter -->
+                <!-- social icons -->
+                <div class="col-md-4 social-icons-foot pb-4 pl-lg-5 pl-2">
+                    <p class="para-effects-style text-li mb-3">Catch on Social</p>
+                    <ul class="mamits_social_list list-unstyled">
+                        <li class="w3_mam_facebook">
+                            <a href="#">
+                                <span class="fa fa-facebook-f"></span>
+                            </a>
+                        </li>
+                        <li class="w3_mam_twitter">
+                            <a href="#">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li class="w3_mam_dribble">
+                            <a href="#">
+                                <span class="fa fa-dribbble"></span>
+                            </a>
+                        </li>
+                        <li class="w3_mam_google">
+                            <a href="#">
+                                <span class="fa fa-google-plus"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //social icons -->
+                <div class="col-md-3 pb-4 text-md-right text-center" id="logo-2">
+                    <h2><a href="index.html">Coiffure</a></h2>
+                </div>
+            </div>
+            <div class="row text-left pt-4">
+                <div class="col-lg-4 adress-info mb-lg-3 mb-4">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="adress-icon">
+                                <span class="fa fa-map-marker"></span>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <h6>Location</h6>
+                            <p>
+                                The company name
+                                <br>New York City.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 adress-info mb-lg-3 mb-4">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="adress-icon">
+                                <span class="fa fa-envelope-o"></span>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <h6>Email</h6>
+                            <a href="mailto:info@example.com">mail@example.com</a>
+                            <br>
+                            <a href="mailto:info@example.com">mail2@example.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 adress-info mb-lg-3 mb-4">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="adress-icon">
+                                <span class="fa fa-phone"></span>
+                            </div>
+                        </div>
+                        <div class="col-9">
+                            <h6>Phone Number</h6>
+                            <p>+ 1234567890</p>
+                            <p>+ 0987654321</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+    <!-- //footer -->
+    <!-- copyright -->
+    <div class="cpy-right py-3">
+        <div class="container">
+            <div class="row">
+                <p class="col-md-6 copy-w3 text-md-left text-center">
+                    © 2019 Coiffure. All rights reserved | Design by
+                    <a href="http://w3layouts.com"> W3layouts.</a>
+                </p>
+                <ul class="col-md-6 list-styled text-md-right text-center mt-md-0 mt-2 p-md-0">
+                    <li class="d-inline cop-link"><a href="#">Privacy Policy</a></li>
+                    <li class="d-inline cop-link"><a href="#">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- //copyright -->
+    <!-- move top icon -->
+    <a href="#home" class="move-top text-center"></a>
+    <!-- //move top icon -->
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
