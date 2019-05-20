@@ -34,11 +34,11 @@
             @foreach (var item in Model)
             {
                 <div class="col-md-4 mb-md-0 mb-5 divToSearch">
-                    <h6 class="top-grid-text text-uppercase"><label>(Post)</label>@Html.DisplayFor(modelItem => item.Title)</h6>
-                    <h3 class="grid-one-text mt-2 mb-4" id="description">@Html.DisplayNameFor(modelItem => item.Description)</h3>
-                    <p>Bloody Type : <span id="bloodType">@Html.DisplayFor(modelItem => item.BloodType)</span></p>
-                    <p id="category">Category : @Html.DisplayNameFor(modelItem => item.Category)</p>
-                    <p id="city">City : @Html.DisplayNameFor(modelItem => item.City)</p>
+                    <h6 class="top-grid-text text-uppercase"><label>(Post)</label>@item.Title</h6>
+                    <h3 class="grid-one-text mt-2 mb-4" id="description">@item.Description</h3>
+                    <p>Blood Type : <span id="bloodType">@item.BloodType</span></p>
+                    <p id="category">Category : @item.Category</p>
+                    <p id="city">City : @item.City</p>
                 </div>
             }
         </div>

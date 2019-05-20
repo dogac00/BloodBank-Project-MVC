@@ -83,7 +83,7 @@ namespace BloodBank.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new BloodBankUser {
-                    UserName = Input.Email,
+                    UserName = Input.UserName,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,

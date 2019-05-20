@@ -4,7 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Click on the City to Show Blood Points</h1>
+
+<div class="price-sty position-relative mb-5">
+    <h3 class="tittle text-center text-bl mb-2">Donation Points</h3>
+    <span class="text-style-bot font-weight-bold">P</span>
+    <p class="text-center mb-2">Click City to Show</p>
+</div>
 
 @if (User.IsInRole("admin"))
 {
@@ -13,25 +18,48 @@
     </p>
 }
 
-<a id="showMapButton" class="btn btn-primary text-white">Hide Map</a>
+<a id="showMapButton" class="btn btn-danger text-white">Hide Map</a>
 
 @(await Component.InvokeAsync("TurkeyMap"))
 
 <br><br>
 
-@foreach (var item in Model)
-{
-    <div class="card d-inline-block" style="width: 18rem;">
-        <img class="card-img-top" style="width: 30%; position: relative; left: 30%; top: 10%;" src="~/img/blood-unit.png" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">@item.Title</h5>
-            <p class="card-text">@item.Address</p>
+<section class="blog_w3ls py-5" id="blog">
+    <div class="container py-xl-5 py-lg-3">
+        <div class="row pt-3">
+            <!-- blog grid -->
+            @if (Model.Count() == 0)
+            {
+                <div class="col-lg-6 offset-lg-1 pr-lg-4 mt-lg-0 mt-4 about-right-mo">
+                    <p class="mt-4">
+                        We're sorry to inform you that there're no blood donation points in this city.
+                        Please look for cities nearby.
+                    </p>
+                </div>
+            }
+
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="med-blog">
+                        <div class="blog-header">
+                            <a href="#">
+                                <img class="img-fluid" src="~/img/blood-unit.png" alt="image" width="100;">
+                            </a>
+                        </div>
+                        <div class="blog-body py-4">
+                            <span>@item.Phone</span>
+                            <a href="#" class="blog-title">@item.Title</a>
+                            <p>@item.Address</p>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- //blog grid -->
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">@item.Phone</li>
-        </ul>
     </div>
-}
+</section>
+<!-- //blog -->
 
 <script>
     $(document).ready(function () {

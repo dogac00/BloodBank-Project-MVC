@@ -18,7 +18,6 @@ namespace BloodBank.Models
         public string LastName { get; set; }
 
         public string City { get; set; }
-        public string Role { get; set; }
         public string BloodType { get; set; }
     }
 }

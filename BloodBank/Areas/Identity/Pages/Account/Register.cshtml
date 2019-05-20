@@ -12,23 +12,22 @@
 <div class="row register-row">
     <div class="align-content-center" style="width: 60%; margin: 0 auto">
         <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="row">
                 <div class="col-sm-6 form-group">
                     <label>First Name</label>
-                    <input asp-for="Input.FirstName" type="text" name="FirstName" placeholder="First Name" class="form-control" />
+                    <input asp-for="Input.FirstName" type="text" placeholder="First Name" class="form-control" />
                     <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6 form-group">
                     <label>Last Name</label>
-                    <input asp-for="Input.LastName" class="form-control" type="text" name="LastName" placeholder="Last Name" required="">
+                    <input asp-for="Input.LastName" class="form-control" type="text" placeholder="Last Name" required="">
                     <span asp-validation-for="Input.LastName" class="text-danger"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 form-group">
                     <label>User Name</label>
-                    <input class="form-control" asp-for="Input.UserName" type="text" name="Telephone" placeholder="User Name" required="">
+                    <input class="form-control" asp-for="Input.UserName" type="text" placeholder="User Name" required="">
                     <span asp-validation-for="Input.UserName" class="text-danger"></span>
                 </div>
                 <div class="col-sm-6 form-group">
@@ -54,7 +53,7 @@
                 </div>
                 <div class="col-sm-6 form-group">
                     <label asp-for="Input.Email"></label>
-                    <input class="form-control" asp-for="Input.Email" type="email" name="Email" placeholder="Email" required="">
+                    <input class="form-control" asp-for="Input.Email" placeholder="Email" required="">
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
             </div>
