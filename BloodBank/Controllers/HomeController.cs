@@ -20,7 +20,7 @@ namespace BloodBank.Controllers
             return View();
         }
 
-        public IActionResult FirstLineRegister()
+        public IActionResult Preregister()
         {
             return View();
         }

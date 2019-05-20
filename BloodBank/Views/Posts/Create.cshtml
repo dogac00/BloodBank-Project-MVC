@@ -6,26 +6,28 @@
 
 <h1>Create</h1>
 
-<h4>Post</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
+<div class="col-lg-7 contctf_mail_grid_right">
+    <h3 class="sub-w3ls-headf">Please fill this form to Create a Blood Post.</h3>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label>Title</label>
+                <input class="form-control" type="text" asp-for="Title" placeholder="Name" required="">
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="PostType"></label>
-                <select asp-for="PostType" class="custom-select">
-                    <option value="Recipient">Recipient</option>
-                    <option value="Donor">Donor</option>
+            <div class="col-sm-6 form-group">
+                <label>City</label>
+                <select asp-for="City" class="custom-select">
+                    <option value="İstanbul">İstanbul</option>
+                    <option value="Ankara">Ankara</option>
+                    <option value="İzmir">İzmir</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label asp-for="BloodType"></label>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label>Blood Type</label>
                 <select asp-for="BloodType" class="custom-select">
                     <option value="A+">A+</option>
                     <option value="A-">A-</option>
@@ -37,31 +39,21 @@
                     <option value="0-">0-</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label asp-for="City"></label>
-                <select asp-for="City" class="custom-select">
-                    <option value="İstanbul">İstanbul</option>
-                    <option value="Ankara">Ankara</option>
-                    <option value="İzmir">İzmir</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            <div class="col-sm-6 form-group">
                 <label asp-for="Category"></label>
                 <select asp-for="Category" class="custom-select">
                     <option value="Normal">Normal</option>
                     <option value="Urgent">Urgent</option>
                 </select>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="form-group">
+            <textarea placeholder="Your description here..." asp-for="Description" class="form-control" required=""></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn mr-2">Submit</button>
+        <button type="reset" class="btn">Clear</button>
+    </form>
 </div>
 
 <div>

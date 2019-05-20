@@ -16,9 +16,9 @@ function retrieve() {
     var searchedValue = $('.search-bar').val().toLowerCase();
     var selectedValue = $('.selection-bar').find(':selected').text();
 
-    $('.table-to-search tr').each(function () {
-        if (contains($(this).children('td:first').text().toLowerCase(), searchedValue)
-            && selectedValue == "All" || $(this).find('td:eq(1)').text().trim() == selectedValue) {
+    $('.divToSearch').each(function () {
+        if (contains($(this).find('#description').text().toLowerCase(), searchedValue)
+            && selectedValue == "All" || $(this).find('#bloodType').text().trim() == selectedValue) {
             $(this).show();
         }
         else {

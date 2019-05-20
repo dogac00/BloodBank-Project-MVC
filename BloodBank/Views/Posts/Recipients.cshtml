@@ -4,10 +4,13 @@
     ViewData["Title"] = "Recipients";
 }
 
-<h1>Index</h1>
+<div class="price-sty position-relative mb-5">
+    <h3 class="tittle text-center text-bl mb-2">All Posts</h3>
+    <span class="text-style-bot font-weight-bold">S</span>
+</div>
 
 <div class="col-6" style="margin-bottom: 2%; width: 50%; float: left;">
-    <input class="form-control search-bar" type="text" placeholder="Search by Title..." aria-label="Search">
+    <input class="form-control search-bar" type="text" placeholder="Search by description..." aria-label="Search">
 </div>
 
 <div class="col-6" style="width: 50%; float: left;">
@@ -24,52 +27,21 @@
     </select>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BloodType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody class="table-to-search">
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BloodType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <th>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </th>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<!-- grids section -->
+<div class="grids-w3ovt py-5" id="what">
+    <div class="container py-xl-5 py-lg-3">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 mb-md-0 mb-5 divToSearch">
+                    <h6 class="top-grid-text text-uppercase"><label>(Post)</label>@Html.DisplayFor(modelItem => item.Title)</h6>
+                    <h3 class="grid-one-text mt-2 mb-4" id="description">@Html.DisplayNameFor(modelItem => item.Description)</h3>
+                    <p>Bloody Type : <span id="bloodType">@Html.DisplayFor(modelItem => item.BloodType)</span></p>
+                    <p id="category">Category : @Html.DisplayNameFor(modelItem => item.Category)</p>
+                    <p id="city">City : @Html.DisplayNameFor(modelItem => item.City)</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- //grids section -->

@@ -21,11 +21,11 @@
     </script>
     <!-- //Meta tag Keywords -->
     <!-- Custom-Files -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/bootstrap.css">
     <!-- Bootstrap-Core-CSS -->
-    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" media="all" />
     <!-- Style-CSS -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/css/font-awesome.min.css" rel="stylesheet">
     <!-- Font-Awesome-Icons-CSS -->
     <!-- //Custom-Files -->
     <!-- Web-Fonts -->
@@ -62,34 +62,31 @@
                             <label for="drop" class="toggle">Menu</label>
                             <input type="checkbox" id="drop" />
                             <ul class="menu">
-                                <li><a href="index.html" class="active">Home</a></li>
-                                <li><a href="#about">About Us</a></li>
+                                <li><a asp-controller="Home" asp-action="Index" class="active">Home</a></li>
+                                <li><a asp-controller="Posts" asp-action="Recipients">Show Posts</a></li>
                                 <li>
                                     <!-- First Tier Drop Down -->
                                     <label for="drop-2" class="toggle toogle-2">
                                         Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
                                     </label>
-                                    <a href="#">Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                    <a href="#">Login/Register <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                                     <input type="checkbox" id="drop-2" />
                                     <ul>
-                                        <li><a href="#latest" class="drop-text">Latest Hairstyle</a></li>
-                                        <li><a href="#price" class="drop-text">Pricing Plan</a></li>
-                                        <li><a href="#services" class="drop-text">Hairstyle Services</a></li>
-                                        <li><a href="#blog" class="drop-text">Our Blog</a></li>
-                                        <li><a href="#testi" class="drop-text">Testimonials</a></li>
-                                        <li><a href="#what" class="drop-text">What We do?</a></li>
+                                        <li><a asp-controller="Home" asp-action="Preregister">Register as a Donor</a></li>
+                                        <li><a asp-area="Identity" asp-page="/Account/Login">Sign in</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="#services" class="drop-text">Services</a></li>
-                                <li><a href="#gallery">Gallery</a></li>
-                                <li><a href="#contact">Contact Us</a></li>
+                                <li><a asp-controller="Posts" asp-action="Create">Create Blood Posts</a></li>
+                                <li><a asp-controller="CityPoints" asp-action="Index">Where to Donate?</a></li>
+                                <li><a asp-controller="Donations" asp-action="Donation">Make a Donation</a></li>
+                                <li><a asp-controller="UserManagement" asp-action="Index">User Manager</a></li>
                             </ul>
                         </nav>
                     </div>
                     <!-- //nav -->
                     <!-- logo -->
                     <div id="logo">
-                        <h1><a href="index.html">Coiffure</a></h1>
+                        <h1><a asp-controller="Home" asp-action="Index">Blood Bank</a></h1>
                     </div>
                     <!-- //logo -->
                 </div>

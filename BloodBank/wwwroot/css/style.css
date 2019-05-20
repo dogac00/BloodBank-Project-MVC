@@ -560,6 +560,7 @@ li>a:only-child:after {
 .main-top {
     background: url(../img/background-image.jpg) no-repeat center;
     background-size: cover;
+    height: 20%;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
