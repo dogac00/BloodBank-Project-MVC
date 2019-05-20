@@ -10,12 +10,20 @@
         top: 6%;
         left: 5%;
     }
+
+    .preregister-row {
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
 </style>
 
-<h1>First Line Register</h1>
+<div class="price-sty position-relative mb-5">
+    <h3 class="tittle text-center text-bl mb-2">PreRegister</h3>
+    <span class="text-style-bot font-weight-bold">P</span>
+</div>
 
 <!-- Material inline 1 -->
-<div>
+<div class="row preregister-row">
     <h4>Are you 17 – 65 years old?</h4>
     <div class="form-check form-check-inline radio-button-class">
         <input type="radio" class="form-check-input" id="materialInline1Yes" name="inlineMaterialRadiosExample1">
@@ -29,7 +37,7 @@
     </div>
 </div>
 
-<div>
+<div class="row preregister-row">
     <h4>Do you currently weigh less than 50kg (7 stone 12 pounds)?</h4>
     <div class="form-check form-check-inline radio-button-class">
         <input type="radio" class="form-check-input" id="materialInline2Yes" name="inlineMaterialRadiosExample2">
@@ -43,7 +51,7 @@
     </div>
 </div>
 
-<div>
+<div class="row preregister-row">
     <h4>Have you had a blood or blood product transfusion since 1st January 1980?</h4>
     <div class="form-check form-check-inline radio-button-class">
         <input type="radio" class="form-check-input" id="materialInline3Yes" name="inlineMaterialRadiosExample3">
@@ -57,7 +65,7 @@
     </div>
 </div>
 
-<div>
+<div class="row preregister-row">
     <h4>Have you received donated eggs or embryos since 1st January 1980?</h4>
     <div class="form-check form-check-inline radio-button-class">
         <input type="radio" class="form-check-input" id="materialInline4Yes" name="inlineMaterialRadiosExample4">
@@ -71,7 +79,7 @@
     </div>
 </div>
 
-<div>
+<div class="row preregister-row">
     <h4>Have you ever had a cancer other than basal cell carcinoma or cervical carcinoma insitu (CIN)?</h4>
     <div class="form-check form-check-inline radio-button-class">
         <input type="radio" class="form-check-input" id="materialInline5Yes" name="inlineMaterialRadiosExample5">
@@ -126,7 +134,9 @@
     </div>
 </div>
 
-<a id="ContinueButton" class="btn btn-primary text-white" style="margin-top: 4%;">Continue</a>
+<div class="row preregister-row">
+    <button type="submit" id="ContinueButton" class="btn mr-2">Continue</button>
+</div>
 
 <script>
     $(document).ready(function () {

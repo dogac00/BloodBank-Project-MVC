@@ -100,3 +100,7 @@ body {
 #guney-kibris {
     pointer-events: none;
 }
+
+.register-row {
+    margin-bottom: 6%;
+}
