@@ -48,8 +48,10 @@ namespace BloodBank.Areas.Identity.Pages.Account
             [StringLength(100)]
             public string LastName { get; set; }
 
+            [Required]
+            public string UserName { get; set; }
+
             public string City { get; set; }
-            public string Role { get; set; }
             public string BloodType { get; set; }
 
             [Required]
@@ -81,12 +83,11 @@ namespace BloodBank.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new BloodBankUser {
-                    UserName = Input.FirstName + Input.LastName,
+                    UserName = Input.Email,
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
                     City = Input.City,
-                    Role = Input.Role,
                     BloodType = Input.BloodType
                 };
 

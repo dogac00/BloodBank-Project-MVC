@@ -19,14 +19,9 @@ namespace BloodBank.Controllers
             _context = context;
         }
         
-        public async Task<IActionResult> Donors()
+        public async Task<IActionResult> Index()
         {
-            return View(await _context.Post.Where(p => p.PostType == "Donor").ToListAsync());
-        }
-
-        public async Task<IActionResult> Recipients()
-        {
-            return View(await _context.Post.Where(p => p.PostType == "Recipient").ToListAsync());
+            return View(await _context.Post.ToListAsync());
         }
 
         // GET: Posts/Details/5
@@ -53,12 +48,9 @@ namespace BloodBank.Controllers
             return View();
         }
 
-        // POST: Posts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,PostType,BloodType,City,Description,Category")] Post post)
+        public async Task<IActionResult> Create([Bind("Id,Title,BloodType,City,Description,Category")] Post post)
         {
             if (ModelState.IsValid)
             {
@@ -84,10 +76,7 @@ namespace BloodBank.Controllers
             }
             return View(post);
         }
-
-        // POST: Posts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,BloodType,City,Description,Category")] Post post)
