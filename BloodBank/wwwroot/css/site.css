@@ -80,7 +80,7 @@ body {
     .il-isimleri div {
         font-family: 'Open Sans';
         display: inline-block;
-        background: #1094F6;
+        background: #DC3545;
         color: #fff;
         padding: 8px 16px;
         -webkit-border-radius: 4px;
@@ -94,7 +94,7 @@ body {
 }
 
     #svg-turkiye-haritasi path:hover {
-        fill: #1094F6;
+        fill: #DC3545;
     }
 
 #guney-kibris {

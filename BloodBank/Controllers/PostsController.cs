@@ -7,21 +7,52 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BloodBank.Data;
 using BloodBank.Models;
+using BloodBank.ViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace BloodBank.Controllers
 {
     public class PostsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<BloodBankUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public PostsController(ApplicationDbContext context)
+        public PostsController(ApplicationDbContext context, UserManager<BloodBankUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Post.ToListAsync());
+            var postList = _context
+                .Post
+                .ToList();
+
+            var postModel = new PostIndexModel();
+
+            foreach (var item in postList)
+            {
+                var post = new Post
+                {
+                    Id = item.Id,
+                    Title = item.Title,
+                    BloodType = item.BloodType,
+                    City = item.City,
+                    Category = item.Category,
+                    Description = item.Description
+                };
+
+                postModel.Posts.Add(post);
+            }
+
+            var userName = User.Identity.Name;
+            var _currentUser = userName == null ? null : _userManager.FindByNameAsync(User.Identity.Name).Result;
+            postModel.IsAdmin = _currentUser == null ? false : await _userManager.IsInRoleAsync(_currentUser, "admin");
+
+            return View(postModel);
         }
 
         // GET: Posts/Details/5
@@ -56,7 +87,7 @@ namespace BloodBank.Controllers
             {
                 _context.Add(post);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction(nameof(Index));
             }
             return View(post);
         }

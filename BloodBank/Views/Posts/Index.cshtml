@@ -1,13 +1,20 @@
-﻿@model IEnumerable<BloodBank.Models.Post>
+﻿@model BloodBank.ViewModels.PostIndexModel
 
 @{
-    ViewData["Title"] = "Recipients";
+    ViewData["Title"] = "Blood Posts";
 }
 
-<div class="price-sty position-relative mb-5">
+@if (Model.IsAdmin)
+{
+    <a class="btn mt-sm-5 mt-4 button-style-2" asp-controller="Posts" asp-action="Create">Create Blood Post</a>
+}
+
+<div class="col-6 price-sty position-relative mb-5">
     <h3 class="tittle text-center text-bl mb-2">All Posts</h3>
     <span class="text-style-bot font-weight-bold">S</span>
 </div>
+
+
 
 <div class="col-6" style="margin-bottom: 2%; width: 50%; float: left;">
     <input class="form-control search-bar" type="text" placeholder="Search by description..." aria-label="Search">
@@ -31,7 +38,7 @@
 <div class="grids-w3ovt py-5" id="what">
     <div class="container py-xl-5 py-lg-3">
         <div class="row">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Posts)
             {
                 <div class="col-md-4 mb-md-0 mb-5 divToSearch">
                     <h6 class="top-grid-text text-uppercase"><label>(Post)</label>@item.Title</h6>

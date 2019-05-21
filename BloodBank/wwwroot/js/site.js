@@ -72,3 +72,16 @@ $('#DonationForm').submit(function (e) {
         e.preventDefault();
     }
 });
+
+$('#NameOnCard').keyup(function () {
+    if (/[^a-zA-Z]/.test($('#NameOnCard').val())) {
+        $('#NameOnCardValidation').text("Name should only consist of letters.");
+    }
+    else {
+        $('#NameOnCardValidation').text("");
+    }
+});
+
+$('#DonateButton').click(function () {
+    $('#ValidationCheckText').text("");
+});

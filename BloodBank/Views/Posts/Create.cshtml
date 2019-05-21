@@ -10,7 +10,7 @@
 </div>
 
 <div class="col-lg-7 contctf_mail_grid_right">
-    <h3 class="sub-w3ls-headf">Please fill this form to Create a Blood Post.</h3>
+    <h3 class="sub-w3ls-headf">Create a new Blood Post.</h3>
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
@@ -54,13 +54,9 @@
             <textarea placeholder="Your description here..." asp-for="Description" class="form-control" required=""></textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn mr-2">Submit</button>
+        <button type="submit" class="btn mr-2">Create</button>
         <button type="reset" class="btn">Clear</button>
     </form>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

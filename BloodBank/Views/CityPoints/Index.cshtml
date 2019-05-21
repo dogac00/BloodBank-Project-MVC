@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<BloodBank.Models.CityPoints>
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<BloodBankUser> _userManager
 
 @{
     ViewData["Title"] = "Index";
 }
-
 
 <div class="price-sty position-relative mb-5">
     <h3 class="tittle text-center text-bl mb-2">Donation Points</h3>
@@ -11,14 +12,14 @@
     <p class="text-center mb-2">Click City to Show</p>
 </div>
 
-@if (User.IsInRole("admin"))
+@if (User == null ? false : await _userManager.IsInRoleAsync(_userManager.FindByNameAsync(User.Identity.Name).Result, "admin"))
 {
     <p>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" class="btn btn-danger text-white" style="float: left;">Create New Point</a>
     </p>
 }
 
-<a id="showMapButton" class="btn btn-danger text-white">Hide Map</a>
+<a id="showMapButton" class="btn btn-danger text-white" style="position: relative; left: 2%; float: left;">Hide Map</a>
 
 @(await Component.InvokeAsync("TurkeyMap"))
 
@@ -44,7 +45,7 @@
                     <div class="med-blog">
                         <div class="blog-header">
                             <a href="#">
-                                <img class="img-fluid" src="~/img/blood-unit.png" alt="image" width="100;">
+                                <img class="img-fluid" src="~/img/blood-unit.png" alt="image" width="100">
                             </a>
                         </div>
                         <div class="blog-body py-4">
