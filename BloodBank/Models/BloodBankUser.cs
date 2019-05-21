@@ -19,5 +19,7 @@ namespace BloodBank.Models
 
         public string City { get; set; }
         public string BloodType { get; set; }
+
+        public bool IsDonor { get; set; }
     }
 }

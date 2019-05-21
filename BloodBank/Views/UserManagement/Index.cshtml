@@ -21,6 +21,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Mail)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDonor)
+                </th>
                 <th></th>
             </tr>
         </thead>
@@ -45,6 +48,16 @@
                     else
                     {
                         <a asp-action="MakeAdmin" asp-route-id="@item.Id" class="btn btn-primary">Make Admin</a>
+                    }
+                </td>
+                <td>
+                    @if (item.IsDonor)
+                    {
+                        <a class="btn btn-primary text-white">Is Donor</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-danger text-white">Not a Donor</a>
                     }
                 </td>
             </tr>

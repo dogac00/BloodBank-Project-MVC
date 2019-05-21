@@ -5,11 +5,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BloodBank.Models;
+using Microsoft.AspNetCore.Identity;
+using BloodBank.Data;
 
 namespace BloodBank.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<BloodBankUser> _userManager;
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(UserManager<BloodBankUser> userManager, ApplicationDbContext context)
+        {
+            _userManager = userManager;
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -20,7 +31,20 @@ namespace BloodBank.Controllers
             return View();
         }
 
-        public IActionResult Preregister()
+        public IActionResult DonorRegisterToIndex(int isdonor)
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+
+            if (isdonor == 1) user.IsDonor = true;
+            else user.IsDonor = false;
+
+            _context.Users.Update(user);
+            _context.SaveChanges();
+            
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult DonorRegister()
         {
             return View();
         }

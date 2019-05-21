@@ -43,7 +43,8 @@ namespace BloodBank.Controllers
                     FullName = item.FirstName + " " + item.LastName,
                     Mail = item.Email,
                     Password = item.PasswordHash,
-                    IsAdmin = isadmin
+                    IsAdmin = isadmin,
+                    IsDonor = item.IsDonor
                 };
 
                 userModelList.Add(user);

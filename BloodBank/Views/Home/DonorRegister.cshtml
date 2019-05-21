@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<BloodBankUser> _userManager
 
 @{
     ViewData["Title"] = "Pre Register";
@@ -19,8 +20,8 @@
     </style>
 
     <div class="price-sty position-relative mb-5">
-        <h3 class="tittle text-center text-bl mb-2">PreRegister</h3>
-        <span class="text-style-bot font-weight-bold">P</span>
+        <h3 class="tittle text-center text-bl mb-2">Donor Register</h3>
+        <span class="text-style-bot font-weight-bold">D</span>
     </div>
 
     <!-- Material inline 1 -->
@@ -109,7 +110,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a class="btn btn-primary" id="ToRegisterButton" asp-area="Identity" asp-page="/Account/Register" asp-route-ispregisted="1">Go to Register Page</a>
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="DonorRegisterToIndex" asp-route-isdonor="1">Go to Home Page</a>
                 </div>
             </div>
         </div>
@@ -130,6 +131,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a class="btn btn-primary" asp-controller="Home" asp-action="DonorRegisterToIndex" asp-route-isdonor="0">Go to Home Page</a>
                 </div>
             </div>
         </div>

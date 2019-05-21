@@ -71,11 +71,11 @@
                                         <label for="drop-2" class="toggle toogle-2">
                                             Dropdown <span class="fa fa-angle-down" aria-hidden="true"></span>
                                         </label>
-                                        <a href="#">You <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                        <a href="#">Hello @User.Identity.Name! <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                                         <input type="checkbox" id="drop-2" />
                                         <ul>
                                             <li><a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">Logout</a></li>
-                                            <li><a href="~/">Hello @User.Identity.Name!</a></li>
+                                            <li><a asp-controller="Home" asp-action="DonorRegister">Donor Register</a></li>
                                         </ul>
                                     </li>
                                 }
@@ -89,7 +89,7 @@
                                         <a href="#">Login/Register <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                                         <input type="checkbox" id="drop-2" />
                                         <ul>
-                                            <li><a asp-controller="Home" asp-action="Preregister">Register as a Donor</a></li>
+                                            <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
                                             <li><a asp-area="Identity" asp-page="/Account/Login">Sign in</a></li>
                                         </ul>
                                     </li>
