@@ -9,7 +9,7 @@ namespace BloodBank.Models
     {
         public int MessageId { get; set; }
         public string Content { get; set; }
-
-        public BloodBankUser Owner { get; set; }
+        public string OwnerName { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

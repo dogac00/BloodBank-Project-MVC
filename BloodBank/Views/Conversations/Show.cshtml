@@ -13,7 +13,7 @@
             <h5 class="card-title">Message</h5>
             <h6 class="card-subtitle mb-2 text-muted">From @item.ApplierName</h6>
             <p class="card-text">@item.Messages.Count messages.</p>
-            <a asp-controller="Conversations" asp-action="FetchMessage" asp-route-applier="@item.ApplierName" class="card-link">Go to Message</a>
+            <a asp-controller="Conversations" asp-action="ShowDialogue" asp-route-applierName="@item.ApplierName" class="card-link">Go to Message</a>
         </div>
     </div>
 }

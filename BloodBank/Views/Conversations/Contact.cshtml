@@ -1,10 +1,10 @@
-﻿@model Conversation
+﻿@model BloodBank.ViewModels.ContactViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Send Message</h1>
+<h3>Start talking!</h3>
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -29,7 +29,7 @@
                         {
                             foreach (var message in Model.Messages)
                             {
-                                if ((message.Owner == null ? null : message.Owner.UserName) == User.Identity.Name)
+                                if (message.OwnerName == User.Identity.Name)
                                 {
                                     <li class="right clearfix">
                                         <span class="chat-img pull-right">
@@ -37,7 +37,7 @@
                                         </span>
                                         <div class="chat-body clearfix">
                                             <div class="header">
-                                                <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                                <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;@message.DateCreated</small>
                                                 <strong class="pull-right primary-font">@User.Identity.Name</strong>
                                             </div>
                                             <p>
@@ -54,8 +54,8 @@
                                         </span>
                                         <div class="chat-body clearfix">
                                             <div class="header">
-                                                <strong class="primary-font">@Model.PostOwnerName</strong> <small class="pull-right text-muted">
-                                                    <span class="glyphicon glyphicon-time"></span>12 mins ago
+                                                <strong class="primary-font">@Model.OtherPerson</strong> <small class="pull-right text-muted">
+                                                    <span class="glyphicon glyphicon-time"></span>@message.DateCreated
                                                 </small>
                                             </div>
                                             <p>
@@ -69,10 +69,10 @@
                     </ul>
                 </div>
                 <div class="panel-footer">
-                    <form asp-controller="Conversations" asp-action="AddMessage">
+                    <form asp-controller="Conversations" asp-action="SendMessage">
                         <div class="input-group">
-                            <input type="hidden" name="PostOwnerName" value="@Model.PostOwnerName" />
-                            <input type="hidden" name="ApplierName" value="@Model.ApplierName" />
+                            <input type="hidden" name="PostOwnerName" value="@Model.Conversation.PostOwnerName" />
+                            <input type="hidden" name="ApplierName" value="@Model.Conversation.ApplierName" />
                             <input id="btn-input" type="text" name="Content" class="form-control input-sm" placeholder="Type your message here..." />
                             <span class="input-group-btn">
                                 <input type="submit" value="Send" class="btn btn-warning btn-sm" id="btn-chat">

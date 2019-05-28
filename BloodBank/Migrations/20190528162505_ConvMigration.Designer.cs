@@ -4,14 +4,16 @@ using BloodBank.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BloodBank.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190528162505_ConvMigration")]
+    partial class ConvMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,13 +151,13 @@ namespace BloodBank.Migrations
 
                     b.Property<int?>("ConversationId");
 
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<string>("OwnerName");
+                    b.Property<string>("OwnerId");
 
                     b.HasKey("MessageId");
 
                     b.HasIndex("ConversationId");
+
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("Messages");
                 });
@@ -304,6 +306,10 @@ namespace BloodBank.Migrations
                     b.HasOne("BloodBank.Models.Conversation")
                         .WithMany("Messages")
                         .HasForeignKey("ConversationId");
+
+                    b.HasOne("BloodBank.Models.BloodBankUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("BloodBank.Models.Post", b =>

@@ -4,10 +4,7 @@
     ViewData["Title"] = "Blood Posts";
 }
 
-@if (Model.IsAdmin)
-{
-    <a class="btn mt-sm-5 mt-4 button-style-2" asp-controller="Posts" asp-action="Create">Create Blood Post</a>
-}
+<a class="btn mt-sm-5 mt-4 button-style-2" asp-controller="Posts" asp-action="Create">Create Blood Post</a>
 
 <div class="col-6 price-sty position-relative mb-5">
     <h3 class="tittle text-center text-bl mb-2">All Posts</h3>
@@ -46,13 +43,14 @@
                 <p>Blood Type : <span id="bloodType">@item.BloodType</span></p>
                 <p id="category">Category : @item.Category</p>
                 <p id="city">City : @item.City</p>
+                <p id="city">Owner : @item.Owner</p>
                 @if (item.Owner.UserName == User.Identity.Name)
                 {
                     <a class="btn btn-primary text-white" asp-controller="Posts" asp-action="Delete" asp-route-id="@item.Id">Blood Found</a>
                 }
-                @if (Model.IsDonor)
+                @if (Model.IsDonor && item.Owner.UserName != User.Identity.Name)
                 {
-                    <a class="btn btn-danger text-white" asp-controller="Conversations" asp-action="Contact" asp-route-postOwnerName="@item.Owner.UserName">Donate Blood</a>
+                    <a class="btn btn-danger text-white" asp-controller="Conversations" asp-action="Donate" asp-route-postOwnerName="@item.Owner.UserName">Donate Blood</a>
                 }
             </div>
             }

@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BloodBank.Data;
 using BloodBank.Models;
 using Microsoft.AspNetCore.Identity;
+using BloodBank.ViewModels;
 
 namespace BloodBank.Controllers
 {
@@ -48,52 +49,84 @@ namespace BloodBank.Controllers
 
         public IActionResult Show()
         {
+            var currentUser = GetCurrentUser();
+
+            if (currentUser == null)
+            {
+                return View();
+            }
+
             var conversations = _context
                 .Conversations
-                .Where(c => c.PostOwnerName == GetCurrentUser().UserName);
+                .Include("Messages")
+                .Where(c => c.PostOwnerName == currentUser.UserName);
 
             return View(conversations);
         }
 
-        public IActionResult FetchMessage(string applier)
+        public IActionResult Donate(string postOwnerName)
         {
-            var conversation = _context
-                .Conversations
-                .Where(c => c.PostOwnerName == User.Identity.Name)
-                .Where(c => c.ApplierName == applier)
-                .FirstOrDefault();
+            string ApplierName = User.Identity.Name;
+            string PostOwnerName = postOwnerName;
+            
+            return RedirectToAction("Contact", new { postOwnerName = PostOwnerName, applierName = ApplierName });
+        }
 
-            return View("Contact", conversation);
+        public IActionResult ShowDialogue(string applierName)
+        {
+            string ApplierName = applierName;
+            string PostOwnerName = User.Identity.Name;
+
+            return RedirectToAction("Contact", new { postOwnerName = PostOwnerName, applierName = ApplierName });
+        }
+
+        private List<Message> GetMessages(Conversation conversation)
+        {
+            var messageIds = conversation.Messages.Select(c => c.MessageId);
+
+            return _context.Messages.Where(m => messageIds.Contains(m.MessageId)).ToList();
         }
         
-        public IActionResult Contact(string postOwnerName)
+        public IActionResult Contact(string postOwnerName, string applierName)
         {
-            var currentUserName = User.Identity.Name;
-
-            Conversation conversation = _context.Conversations
-                .Include("Messages")
-                .FirstOrDefault(c => c.ApplierName == currentUserName
-                                    && c.PostOwnerName == postOwnerName);
+            Conversation conversation = _context
+                .Conversations
+                .Include(c => c.Messages)
+                .Where(c => c.ApplierName == applierName)
+                .Where(c => c.PostOwnerName == postOwnerName)
+                .FirstOrDefault();
 
             if (conversation == null)
             {
                 Conversation newConversation = new Conversation
                 {
                     PostOwnerName = postOwnerName,
-                    ApplierName = currentUserName,
+                    ApplierName = applierName,
                     Messages = new List<Message>()
                 };
+
+                var PName = postOwnerName;
+                var AName = applierName;
 
                 _context.Conversations.Add(newConversation);
                 _context.SaveChanges();
 
-                return View(newConversation);
+                return View("Contact", new { postOwnerName = PName, applierName = AName });
             }
 
-            return View(conversation);
+            List<Message> messages = GetMessages(conversation);
+
+            ContactViewModel cvm = new ContactViewModel()
+            {
+                Conversation = conversation,
+                Messages = messages,
+                OtherPerson = User.Identity.Name == applierName ? postOwnerName : applierName
+            };
+
+            return View(cvm);
         }
 
-        public IActionResult AddMessage(string PostOwnerName, string ApplierName, string Content)
+        public IActionResult SendMessage(string PostOwnerName, string ApplierName, string Content)
         {
             var conversation = _context
                 .Conversations
@@ -105,14 +138,18 @@ namespace BloodBank.Controllers
             var message = new Message
             {
                 Content = Content,
-                Owner = GetCurrentUser()
+                OwnerName = User.Identity.Name,
+                DateCreated = DateTime.Now
             };
 
+            _context.Messages.Add(message);
             conversation.Messages.Add(message);
             _context.Conversations.Update(conversation);
             _context.SaveChanges();
 
-            return Contact(PostOwnerName);
+            object routeValues = new { postOwnerName = PostOwnerName, applierName = ApplierName };
+
+            return RedirectToAction("Contact", routeValues);
         }
 
         private BloodBankUser GetCurrentUser()

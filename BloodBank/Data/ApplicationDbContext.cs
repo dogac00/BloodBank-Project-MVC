@@ -17,5 +17,6 @@ namespace BloodBank.Data
         public DbSet<BloodBank.Models.CityPoints> CityPoints { get; set; }
         public DbSet<BloodBank.Models.Donation> Donations { get; set; }
         public DbSet<BloodBank.Models.Conversation> Conversations { get; set; }
+        public DbSet<BloodBank.Models.Message> Messages { get; set; }
     }
 }
