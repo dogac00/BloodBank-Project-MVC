@@ -26,7 +26,6 @@ namespace BloodBank.Controllers
         // GET: UserManagement
         public async Task<ActionResult> Index()
         {
-
             var userList = _context
                 .Users
                 .ToList();
@@ -51,6 +50,27 @@ namespace BloodBank.Controllers
             }
 
             return View(userModelList);
+        }
+
+        public BloodBankUser GetCurrentUser()
+        {
+            if (User == null) return null;
+
+            var userName = User.Identity.Name;
+            var _currentUser = userName == null ? null : _userManager.FindByNameAsync(User.Identity.Name).Result;
+
+            return _currentUser;
+        }
+
+        public BloodBankUser GetUserByName(string FirstName)
+        {
+            return _context.Users.FirstOrDefault(u => u.FirstName == FirstName);
+        }
+
+        public async Task<bool> IsAdmin()
+        {
+            var userName = User.Identity.Name;
+            return userName == null ? false : await _userManager.IsInRoleAsync(_userManager.FindByNameAsync(userName).Result, "admin");
         }
 
         // GET: UserManagement/Details/5

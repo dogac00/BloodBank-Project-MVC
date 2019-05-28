@@ -13,7 +13,7 @@ namespace BloodBank.Controllers
     public class HomeController : Controller
     {
         private readonly UserManager<BloodBankUser> _userManager;
-        private readonly ApplicationDbContext _context;
+        private ApplicationDbContext _context;
 
         public HomeController(UserManager<BloodBankUser> userManager, ApplicationDbContext context)
         {

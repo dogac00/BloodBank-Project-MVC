@@ -13,8 +13,9 @@ namespace BloodBank.Data
             : base(options)
         {
         }
-        public DbSet<BloodBank.Models.Post> Post { get; set; }
+        public DbSet<BloodBank.Models.Post> Posts { get; set; }
         public DbSet<BloodBank.Models.CityPoints> CityPoints { get; set; }
-        public DbSet<BloodBank.Models.Donation> Donation { get; set; }
+        public DbSet<BloodBank.Models.Donation> Donations { get; set; }
+        public DbSet<BloodBank.Models.Conversation> Conversations { get; set; }
     }
 }

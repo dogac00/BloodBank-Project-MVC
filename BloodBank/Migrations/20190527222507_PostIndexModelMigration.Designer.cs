@@ -4,14 +4,16 @@ using BloodBank.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BloodBank.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190527222507_PostIndexModelMigration")]
+    partial class PostIndexModelMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,21 +105,6 @@ namespace BloodBank.Migrations
                     b.ToTable("CityPoints");
                 });
 
-            modelBuilder.Entity("BloodBank.Models.Conversation", b =>
-                {
-                    b.Property<int>("ConversationId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplierName");
-
-                    b.Property<string>("PostOwnerName");
-
-                    b.HasKey("ConversationId");
-
-                    b.ToTable("Conversations");
-                });
-
             modelBuilder.Entity("BloodBank.Models.Donation", b =>
                 {
                     b.Property<int>("Id")
@@ -136,28 +123,7 @@ namespace BloodBank.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Donations");
-                });
-
-            modelBuilder.Entity("BloodBank.Models.Message", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content");
-
-                    b.Property<int?>("ConversationId");
-
-                    b.Property<string>("OwnerId");
-
-                    b.HasKey("MessageId");
-
-                    b.HasIndex("ConversationId");
-
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Message");
+                    b.ToTable("Donation");
                 });
 
             modelBuilder.Entity("BloodBank.Models.Post", b =>
@@ -174,15 +140,11 @@ namespace BloodBank.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("OwnerId");
-
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Posts");
+                    b.ToTable("Post");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -297,24 +259,6 @@ namespace BloodBank.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("BloodBank.Models.Message", b =>
-                {
-                    b.HasOne("BloodBank.Models.Conversation")
-                        .WithMany("Messages")
-                        .HasForeignKey("ConversationId");
-
-                    b.HasOne("BloodBank.Models.BloodBankUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
-                });
-
-            modelBuilder.Entity("BloodBank.Models.Post", b =>
-                {
-                    b.HasOne("BloodBank.Models.BloodBankUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

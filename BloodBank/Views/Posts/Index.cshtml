@@ -40,13 +40,21 @@
         <div class="row">
             @foreach (var item in Model.Posts)
             {
-                <div class="col-md-4 mb-md-0 mb-5 divToSearch">
-                    <h6 class="top-grid-text text-uppercase"><label>(Post)</label>@item.Title</h6>
-                    <h3 class="grid-one-text mt-2 mb-4" id="description">@item.Description</h3>
-                    <p>Blood Type : <span id="bloodType">@item.BloodType</span></p>
-                    <p id="category">Category : @item.Category</p>
-                    <p id="city">City : @item.City</p>
-                </div>
+            <div class="col-md-4 mb-md-0 mb-5 divToSearch">
+                <h6 class="top-grid-text text-uppercase"><label>(Post)</label>@item.Title</h6>
+                <h3 class="grid-one-text mt-2 mb-4" id="description">@item.Description</h3>
+                <p>Blood Type : <span id="bloodType">@item.BloodType</span></p>
+                <p id="category">Category : @item.Category</p>
+                <p id="city">City : @item.City</p>
+                @if (item.Owner.UserName == User.Identity.Name)
+                {
+                    <a class="btn btn-primary text-white" asp-controller="Posts" asp-action="Delete" asp-route-id="@item.Id">Blood Found</a>
+                }
+                @if (Model.IsDonor)
+                {
+                    <a class="btn btn-danger text-white" asp-controller="Conversations" asp-action="Contact" asp-route-postowner="@item.Owner">Donate Blood</a>
+                }
+            </div>
             }
         </div>
     </div>

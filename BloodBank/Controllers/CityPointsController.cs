@@ -22,6 +22,7 @@ namespace BloodBank.Controllers
         // GET: CityPoints
         public async Task<IActionResult> Index(int? id)
         {
+            ViewData["route-id"] = id;
             return View(await _context.CityPoints.Where(c => c.CityId == id).ToListAsync());
         }
 
@@ -86,7 +87,7 @@ namespace BloodBank.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CityId,HtmlContent")] CityPoints cityPoints)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CityId,Title,Address,Phone")] CityPoints cityPoints)
         {
             if (id != cityPoints.Id)
             {

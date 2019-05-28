@@ -10,5 +10,6 @@ namespace BloodBank.ViewModels
     {
         public List<Post> Posts { get; set; } = new List<Post>();
         public bool IsAdmin { get; set; }
+        public bool IsDonor { get; set; }
     }
 }

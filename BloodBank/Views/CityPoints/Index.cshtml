@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    var userName = User.Identity.Name;
 }
 
 <div class="price-sty position-relative mb-5">
@@ -12,14 +13,14 @@
     <p class="text-center mb-2">Click City to Show</p>
 </div>
 
-@if (User == null ? false : await _userManager.IsInRoleAsync(_userManager.FindByNameAsync(User.Identity.Name).Result, "admin"))
+@if (await _userManager.IsInRoleAsync(_userManager.GetUserAsync(User).Result, "admin"))
 {
     <p>
         <a asp-action="Create" class="btn btn-danger text-white" style="float: left;">Create New Point</a>
     </p>
 }
 
-<a id="showMapButton" class="btn btn-danger text-white" style="position: relative; left: 2%; float: left;">Hide Map</a>
+<a id="showMapButton" class="btn btn-danger text-white" style="position: relative; left: 2%;">Hide Map</a>
 
 @(await Component.InvokeAsync("TurkeyMap"))
 
@@ -29,7 +30,7 @@
     <div class="container py-xl-5 py-lg-3">
         <div class="row pt-3">
             <!-- blog grid -->
-            @if (Model.Count() == 0)
+            @if (Model.Count() == 0 && ViewData["route-id"] != null)
             {
                 <div class="col-lg-6 offset-lg-1 pr-lg-4 mt-lg-0 mt-4 about-right-mo">
                     <p class="mt-4">
@@ -52,6 +53,11 @@
                             <span>@item.Phone</span>
                             <a href="#" class="blog-title">@item.Title</a>
                             <p>@item.Address</p>
+                            @if (await _userManager.IsInRoleAsync(_userManager.GetUserAsync(User).Result, "admin"))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                            }
                         </div>
                     </div>
                 </div>

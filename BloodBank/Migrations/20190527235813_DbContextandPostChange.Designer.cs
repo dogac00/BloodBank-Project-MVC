@@ -4,14 +4,16 @@ using BloodBank.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BloodBank.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190527235813_DbContextandPostChange")]
+    partial class DbContextandPostChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,9 +111,9 @@ namespace BloodBank.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplierName");
+                    b.Property<string>("FirstUserName");
 
-                    b.Property<string>("PostOwnerName");
+                    b.Property<string>("SecondUserName");
 
                     b.HasKey("ConversationId");
 
@@ -149,13 +151,9 @@ namespace BloodBank.Migrations
 
                     b.Property<int?>("ConversationId");
 
-                    b.Property<string>("OwnerId");
-
                     b.HasKey("MessageId");
 
                     b.HasIndex("ConversationId");
-
-                    b.HasIndex("OwnerId");
 
                     b.ToTable("Message");
                 });
@@ -304,10 +302,6 @@ namespace BloodBank.Migrations
                     b.HasOne("BloodBank.Models.Conversation")
                         .WithMany("Messages")
                         .HasForeignKey("ConversationId");
-
-                    b.HasOne("BloodBank.Models.BloodBankUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("BloodBank.Models.Post", b =>

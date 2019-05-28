@@ -17,18 +17,22 @@ namespace BloodBank.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<BloodBankUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private UserManagementController _userManagement;
 
-        public PostsController(ApplicationDbContext context, UserManager<BloodBankUser> userManager, RoleManager<IdentityRole> roleManager)
+        public PostsController(ApplicationDbContext context, UserManager<BloodBankUser> userManager, 
+            RoleManager<IdentityRole> roleManager, UserManagementController userManagement)
         {
             _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
+            _userManagement = userManagement;
         }
         
         public async Task<IActionResult> Index()
         {
             var postList = _context
-                .Post
+                .Posts
+                .Include("Owner")
                 .ToList();
 
             var postModel = new PostIndexModel();
@@ -42,17 +46,29 @@ namespace BloodBank.Controllers
                     BloodType = item.BloodType,
                     City = item.City,
                     Category = item.Category,
-                    Description = item.Description
+                    Description = item.Description,
+                    Owner = item.Owner
                 };
 
                 postModel.Posts.Add(post);
             }
 
-            var userName = User.Identity.Name;
-            var _currentUser = userName == null ? null : _userManager.FindByNameAsync(User.Identity.Name).Result;
+            var _currentUser = GetCurrentUser();
+
             postModel.IsAdmin = _currentUser == null ? false : await _userManager.IsInRoleAsync(_currentUser, "admin");
+            postModel.IsDonor = _currentUser == null ? false : _currentUser.IsDonor;
 
             return View(postModel);
+        }
+
+        public BloodBankUser GetCurrentUser()
+        {
+            if (User == null) return null;
+
+            var userName = User.Identity.Name;
+            var _currentUser = userName == null ? null : _userManager.FindByNameAsync(User.Identity.Name).Result;
+
+            return _currentUser;
         }
 
         // GET: Posts/Details/5
@@ -63,7 +79,7 @@ namespace BloodBank.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post
+            var post = await _context.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (post == null)
             {
@@ -83,12 +99,15 @@ namespace BloodBank.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,BloodType,City,Description,Category")] Post post)
         {
+            post.Owner = GetCurrentUser();
+
             if (ModelState.IsValid)
             {
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(post);
         }
 
@@ -100,7 +119,7 @@ namespace BloodBank.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post.FindAsync(id);
+            var post = await _context.Posts.FindAsync(id);
             if (post == null)
             {
                 return NotFound();
@@ -148,30 +167,23 @@ namespace BloodBank.Controllers
                 return NotFound();
             }
 
-            var post = await _context.Post
+            var post = await _context.Posts
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (post == null)
             {
                 return NotFound();
             }
 
-            return View(post);
-        }
-
-        // POST: Posts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var post = await _context.Post.FindAsync(id);
-            _context.Post.Remove(post);
+            _context.Posts.Remove(post);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Home");
+
+            return RedirectToAction(nameof(Index));
         }
 
         private bool PostExists(int id)
         {
-            return _context.Post.Any(e => e.Id == id);
+            return _context.Posts.Any(e => e.Id == id);
         }
     }
 }
