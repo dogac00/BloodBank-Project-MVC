@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Conversation>
+
+@{
+    ViewData["Title"] = "Show";
+}
+
+<h1>Show</h1>
+
+@foreach (var item in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Message</h5>
+            <h6 class="card-subtitle mb-2 text-muted">From @item.ApplierName</h6>
+            <p class="card-text">@item.Messages.Count messages.</p>
+            <a asp-controller="Conversations" asp-action="FetchMessage" asp-route-applier="@item.ApplierName" class="card-link">Go to Message</a>
+        </div>
+    </div>
+}

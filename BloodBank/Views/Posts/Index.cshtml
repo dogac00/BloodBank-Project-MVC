@@ -52,7 +52,7 @@
                 }
                 @if (Model.IsDonor)
                 {
-                    <a class="btn btn-danger text-white" asp-controller="Conversations" asp-action="Contact" asp-route-postowner="@item.Owner">Donate Blood</a>
+                    <a class="btn btn-danger text-white" asp-controller="Conversations" asp-action="Contact" asp-route-postOwnerName="@item.Owner.UserName">Donate Blood</a>
                 }
             </div>
             }

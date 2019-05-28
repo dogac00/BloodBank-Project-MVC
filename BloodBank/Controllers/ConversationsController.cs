@@ -45,22 +45,42 @@ namespace BloodBank.Controllers
 
             return View(conversation);
         }
-        
-        public IActionResult Contact(BloodBankUser postOwner)
+
+        public IActionResult Show()
         {
-            var currentUser = GetCurrentUser();
+            var conversations = _context
+                .Conversations
+                .Where(c => c.PostOwnerName == GetCurrentUser().UserName);
+
+            return View(conversations);
+        }
+
+        public IActionResult FetchMessage(string applier)
+        {
+            var conversation = _context
+                .Conversations
+                .Where(c => c.PostOwnerName == User.Identity.Name)
+                .Where(c => c.ApplierName == applier)
+                .FirstOrDefault();
+
+            return View("Contact", conversation);
+        }
+        
+        public IActionResult Contact(string postOwnerName)
+        {
+            var currentUserName = User.Identity.Name;
 
             Conversation conversation = _context.Conversations
                 .Include("Messages")
-                .FirstOrDefault(c => c.ApplierName == currentUser.FirstName
-                                    && c.PostOwnerName == postOwner.FirstName);
+                .FirstOrDefault(c => c.ApplierName == currentUserName
+                                    && c.PostOwnerName == postOwnerName);
 
             if (conversation == null)
             {
                 Conversation newConversation = new Conversation
                 {
-                    PostOwnerName = postOwner.UserName,
-                    ApplierName = currentUser.UserName,
+                    PostOwnerName = postOwnerName,
+                    ApplierName = currentUserName,
                     Messages = new List<Message>()
                 };
 
@@ -92,7 +112,7 @@ namespace BloodBank.Controllers
             _context.Conversations.Update(conversation);
             _context.SaveChanges();
 
-            return RedirectToAction("Contact");
+            return Contact(PostOwnerName);
         }
 
         private BloodBankUser GetCurrentUser()
