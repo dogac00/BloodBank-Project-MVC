@@ -77,7 +77,9 @@ namespace BloodBank.Controllers
             string ApplierName = applierName;
             string PostOwnerName = User.Identity.Name;
 
-            return RedirectToAction("Contact", new { postOwnerName = PostOwnerName, applierName = ApplierName });
+            object routeValues = new { postOwnerName = PostOwnerName, applierName = ApplierName };
+
+            return RedirectToAction("Contact", routeValues);
         }
 
         private List<Message> GetMessages(Conversation conversation)

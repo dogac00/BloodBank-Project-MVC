@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<BloodBank.Models.CityPoints>
 @using Microsoft.AspNetCore.Identity;
 @inject UserManager<BloodBankUser> _userManager
+@inject SignInManager<BloodBankUser> _signInManager
 
 @{
     ViewData["Title"] = "Index";
@@ -13,7 +14,7 @@
     <p class="text-center mb-2">Click City to Show</p>
 </div>
 
-@if (await _userManager.IsInRoleAsync(_userManager.GetUserAsync(User).Result, "admin"))
+@if (_signInManager.IsSignedIn(User) && await _userManager.IsInRoleAsync(_userManager.GetUserAsync(User).Result, "admin"))
 {
     <p>
         <a asp-action="Create" class="btn btn-danger text-white" style="float: left;">Create New Donor Point</a>
@@ -53,7 +54,7 @@
                             <span>@item.Phone</span>
                             <a href="#" class="blog-title">@item.Title</a>
                             <p>@item.Address</p>
-                            @if (await _userManager.IsInRoleAsync(_userManager.GetUserAsync(User).Result, "admin"))
+                            @if (_signInManager.IsSignedIn(User) && await _userManager.IsInRoleAsync(_userManager.GetUserAsync(User).Result, "admin"))
                             {
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
                                 <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>

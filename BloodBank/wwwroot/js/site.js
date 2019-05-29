@@ -74,7 +74,7 @@ $('#DonationForm').submit(function (e) {
 });
 
 $('#NameOnCard').keyup(function () {
-    if (/[^a-zA-Z]/.test($('#NameOnCard').val())) {
+    if (/[^a-zA-Z\s]/.test($('#NameOnCard').val())) {
         $('#NameOnCardValidation').text("Name should only consist of letters.");
     }
     else {
