@@ -96,18 +96,24 @@
                                         </ul>
                                     </li>
                                 }
-                                <li><a asp-controller="Posts" asp-action="Create">Create Blood Posts</a></li>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <li><a asp-controller="Posts" asp-action="Create">Create Blood Posts</a></li>
+                                }
                                 <li><a asp-controller="CityPoints" asp-action="Index">Where to Donate?</a></li>
                                 <li><a asp-controller="Donations" asp-action="Donation">Make a Donation</a></li>
-                                @if (User.Identity.Name != null)
+                                @if (SignInManager.IsSignedIn(User))
                                 {
-                                    @if (_context.Conversations.Where(c => c.PostOwnerName == User.Identity.Name).Count() > 0)
+                                    @if (User.Identity.Name != null)
                                     {
-                                        <li><a asp-controller="Conversations" asp-action="Show" class="btn btn-primary">Messages</a></li>
-                                    }
-                                    else
-                                    {
-                                        <li><a asp-controller="Conversations" asp-action="Show">Messages</a></li>
+                                        @if (_context.Conversations.Where(c => c.PostOwnerName == User.Identity.Name).Count() > 0)
+                                        {
+                                            <li><a asp-controller="Conversations" asp-action="Show" class="btn btn-success">Messages</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a asp-controller="Conversations" asp-action="Show">Messages</a></li>
+                                        }
                                     }
                                 }
                                 <li><a asp-controller="UserManagement" asp-action="Index">User Manager</a></li>

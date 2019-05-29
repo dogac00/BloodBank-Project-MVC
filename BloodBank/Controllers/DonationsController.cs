@@ -31,7 +31,6 @@ namespace BloodBank.Controllers
         {
             if (ModelState.IsValid)
             {
-                BloodBank.Models.Donation.TotalAmount += donation.Amount;
                 _context.Add(donation);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Donation));

@@ -59,7 +59,7 @@ namespace BloodBank.Controllers
             var conversations = _context
                 .Conversations
                 .Include("Messages")
-                .Where(c => c.PostOwnerName == currentUser.UserName);
+                .Where(c => c.PostOwnerName == User.Identity.Name);
 
             return View(conversations);
         }

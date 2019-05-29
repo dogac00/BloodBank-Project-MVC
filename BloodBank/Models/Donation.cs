@@ -7,8 +7,6 @@ namespace BloodBank.Models
 {
     public class Donation
     {
-        public static int TotalAmount { get; set; }
-
         public int Id { get; set; }
         public int Amount { get; set; }
         public string NameOnCard { get; set; }

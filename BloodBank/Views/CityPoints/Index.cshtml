@@ -16,7 +16,7 @@
 @if (await _userManager.IsInRoleAsync(_userManager.GetUserAsync(User).Result, "admin"))
 {
     <p>
-        <a asp-action="Create" class="btn btn-danger text-white" style="float: left;">Create New Point</a>
+        <a asp-action="Create" class="btn btn-danger text-white" style="float: left;">Create New Donor Point</a>
     </p>
 }
 

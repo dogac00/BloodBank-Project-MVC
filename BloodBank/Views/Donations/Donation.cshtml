@@ -4,30 +4,34 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="price-sty position-relative mb-5">
+    <h3 class="tittle text-center text-bl mb-2">Create Post</h3>
+    <span class="text-style-bot font-weight-bold">C</span>
+</div>
 
-<h4>Donation</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" id="DonationForm">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label class="control-label">Amount (TL)</label>
-                <input asp-for="Amount" class="form-control" />
+<div class="col-lg-7 contctf_mail_grid_right">
+    <h3 class="sub-w3ls-headf">Create a new Blood Post.</h3>
+    <form asp-action="Create" id="DonationForm">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label>Amount (TL)</label>
+                <input class="form-control" type="text" asp-for="Amount" placeholder="Name" required="">
                 <span id="AmountValidation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-sm-6 form-group">
                 <label asp-for="NameOnCard" class="control-label"></label>
                 <input asp-for="NameOnCard" id="NameOnCard" class="form-control" />
                 <span id="NameOnCardValidation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
                 <label asp-for="CreditCardNumber" class="control-label"></label>
                 <input asp-for="CreditCardNumber" class="form-control" />
                 <span id="CreditCardValidation" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="col-sm-6 form-group">
                 <label asp-for="ExpireDateMonth" class="control-label"></label>
                 <select asp-for="ExpireDateMonth" class="custom-select">
                     <option value="">Month</option>
@@ -46,25 +50,30 @@
                 </select>
                 <span asp-validation-for="ExpireDateMonth" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ExpireDateYear" class="control-label"></label>
-                <select asp-for="ExpireDateYear" class="custom-select">
-                    <option value="">Year</option>
-                    <option value="19">2019</option>
-                    <option value="20">2020</option>
-                    <option value="21">2021</option>
-                    <option value="22">2022</option>
-                    <option value="23">2023</option>
-                    <option value="24">2024</option>
-                    <option value="25">2025</option>
-                    <option value="26">2026</option>
-                    <option value="27">2027</option>
-                    <option value="28">2028</option>
-                    <option value="29">2029</option>
-                </select>
-                <span asp-validation-for="ExpireDateYear" class="text-danger"></span>
-            </div>
-            @(await Component.InvokeAsync("PaymentSuccessful"))
-        </form>
-    </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ExpireDateYear" class="control-label"></label>
+            <select asp-for="ExpireDateYear" class="custom-select">
+                <option value="">Year</option>
+                <option value="19">2019</option>
+                <option value="20">2020</option>
+                <option value="21">2021</option>
+                <option value="22">2022</option>
+                <option value="23">2023</option>
+                <option value="24">2024</option>
+                <option value="25">2025</option>
+                <option value="26">2026</option>
+                <option value="27">2027</option>
+                <option value="28">2028</option>
+                <option value="29">2029</option>
+            </select>
+            <span asp-validation-for="ExpireDateYear" class="text-danger"></span>
+        </div>
+        <button type="reset" class="btn">Clear</button>
+        @(await Component.InvokeAsync("PaymentSuccessful"))
+    </form>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
