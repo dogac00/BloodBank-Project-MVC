@@ -5,12 +5,12 @@
 }
 
 <div class="price-sty position-relative mb-5">
-    <h3 class="tittle text-center text-bl mb-2">Create Post</h3>
-    <span class="text-style-bot font-weight-bold">C</span>
+    <h3 class="tittle text-center text-bl mb-2">Make Donation</h3>
+    <span class="text-style-bot font-weight-bold">D</span>
 </div>
 
 <div class="col-lg-7 contctf_mail_grid_right">
-    <h3 class="sub-w3ls-headf">Create a new Blood Post.</h3>
+    <h3 class="sub-w3ls-headf">Make a Donation.</h3>
     <form asp-action="Create" id="DonationForm">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
@@ -20,19 +20,19 @@
                 <span id="AmountValidation" class="text-danger"></span>
             </div>
             <div class="col-sm-6 form-group">
-                <label asp-for="NameOnCard" class="control-label"></label>
+                <label class="control-label">Name on Card</label>
                 <input asp-for="NameOnCard" id="NameOnCard" class="form-control" />
                 <span id="NameOnCardValidation" class="text-danger"></span>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 form-group">
-                <label asp-for="CreditCardNumber" class="control-label"></label>
+                <label class="control-label">Credit Card Number</label>
                 <input asp-for="CreditCardNumber" class="form-control" />
                 <span id="CreditCardValidation" class="text-danger"></span>
             </div>
             <div class="col-sm-6 form-group">
-                <label asp-for="ExpireDateMonth" class="control-label"></label>
+                <label class="control-label">Expire Date Month</label>
                 <select asp-for="ExpireDateMonth" class="custom-select">
                     <option value="">Month</option>
                     <option value="01">01</option>
@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="ExpireDateYear" class="control-label"></label>
+            <label class="control-label">Expire Date Year</label>
             <select asp-for="ExpireDateYear" class="custom-select">
                 <option value="">Year</option>
                 <option value="19">2019</option>

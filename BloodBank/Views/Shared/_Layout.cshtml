@@ -7,7 +7,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>@ViewData["Title"] - BloodBank</title>
+    <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/medical-blood-1/512/blood_drop-512.png">
+    <title>@ViewData["Title"] BloodBank</title>
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
@@ -102,6 +103,7 @@
                                 }
                                 <li><a asp-controller="CityPoints" asp-action="Index">Where to Donate?</a></li>
                                 <li><a asp-controller="Donations" asp-action="Donation">Make a Donation</a></li>
+                                <li><a asp-controller="Home" asp-action="DonationCenters">Donation Centers</a></li>
                                 @if (SignInManager.IsSignedIn(User))
                                 {
                                     @if (User.Identity.Name != null)

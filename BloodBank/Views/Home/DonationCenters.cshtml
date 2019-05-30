@@ -1,0 +1,94 @@
+﻿<style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+        height: 400px;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<body>
+    <div id="map"></div>
+    <script>
+        initMap();
+
+        function initMap() {
+            var locations = [
+                ['Uskudar Kan Merkezi', 41.042346, 29.064191, 4],
+                ['Kadikoy Kan Merkezi', 40.984389, 29.072629, 5],
+                ['Nispetiye Kan Merkezi', 41.047979, 29.000049, 3],
+                ['Alibeyköy Kan Merkezi', 41.086876, 28.972783, 2],
+                ['Sarıyer Kan Merkezi', 41.145972, 29.041165, 1]
+            ];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: new google.maps.LatLng(-33.92, 151.25),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map
+                });
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+
+            var kadikoyContent = '<p>Adres : İskele Meydanı Kadıköy Haldun Taner Sahnesi Yanı Kadıköy/İSTANBUL \
+                Çalışma Saatleri: Pazartesi - Salı - Çarşamba - Perşembe 14.00 - 17.00 / Cuma ve Hafta Sonu 10.00 - 19.00(Ramazan Ayı Süresince Kapalı Olacaktır)</p>';
+            var mecidiyekoyContent = 'Adres : Nuh kuyusu cad. No:56 Üsküdar/İSTANBUL \
+                Tel: 444 9 526 Faks: (0216) 342 05 75\
+                Çalışma Saatleri: H.İçi: 08.00 - 11: 30 / 13.00 - 16: 30(Hafta Sonu ve Resmi Tatillerde Kapalıdır) 29 - 30 - 31 Mayıs 2019 Tarihlerinde Kapalı Olacaktır';
+            var bakirkoyContent = 'Adres : Atatürk Mah. Çavuşbaşı Cad. No: 9 Santral Camii Yanı Ümraniye/ İstanbul \
+                Çalışma Saatleri: Her Salı 10.00 - 14.00 / 15.00 - 19.00';
+
+            infoWindow = new google.maps.InfoWindow;
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfvLBu5HkT8hv6sOjT15xK5AIjNsPrvNw&callback=initMap"
+            async defer></script>
+</body>

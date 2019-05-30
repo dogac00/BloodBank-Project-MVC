@@ -21,6 +21,11 @@ namespace BloodBank.Controllers
             _context = context;
         }
 
+        public IActionResult DonationCenters()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();
