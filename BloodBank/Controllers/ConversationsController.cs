@@ -106,14 +106,18 @@ namespace BloodBank.Controllers
                     ApplierName = applierName,
                     Messages = new List<Message>()
                 };
-
-                var PName = postOwnerName;
-                var AName = applierName;
+                
+                ContactViewModel contactViewModel = new ContactViewModel()
+                {
+                    Conversation = newConversation,
+                    Messages = new List<Message>(),
+                    OtherPerson = User.Identity.Name == applierName ? postOwnerName : applierName
+                };
 
                 _context.Conversations.Add(newConversation);
                 _context.SaveChanges();
 
-                return View("Contact", new { postOwnerName = PName, applierName = AName });
+                return View(contactViewModel);
             }
 
             List<Message> messages = GetMessages(conversation);
