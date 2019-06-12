@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using BloodBank.Models;
 using Microsoft.AspNetCore.Identity;
 using BloodBank.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BloodBank.Controllers
 {
@@ -21,9 +22,10 @@ namespace BloodBank.Controllers
             _context = context;
         }
 
-        public IActionResult DonationCenters()
+        public async Task<IActionResult> DonationCenters()
         {
-            return View();
+            var locations = await _context.Locations.ToListAsync();
+            return View(locations);
         }
 
         public IActionResult Index()

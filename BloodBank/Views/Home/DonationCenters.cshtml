@@ -1,4 +1,7 @@
-﻿<style>
+﻿@using Newtonsoft.Json;
+@model IEnumerable<Location>
+
+<style>
     /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
     #map {
@@ -18,13 +21,14 @@
         initMap();
 
         function initMap() {
-            var locations = [
-                ['Uskudar Kan Merkezi', 41.042346, 29.064191, 4],
-                ['Kadikoy Kan Merkezi', 40.984389, 29.072629, 5],
-                ['Nispetiye Kan Merkezi', 41.047979, 29.000049, 3],
-                ['Alibeyköy Kan Merkezi', 41.086876, 28.972783, 2],
-                ['Sarıyer Kan Merkezi', 41.145972, 29.041165, 1]
-            ];
+            var j, counter = 1, locations = [];
+
+            var locationsArray = @Html.Raw(JsonConvert.SerializeObject(Model));
+
+            for (j = 0; j < locationsArray.length; j++) {
+                locations.push([locationsArray[j].Description, locationsArray[j].Latitude,
+                locationsArray[j].Longitude, counter++]);
+            }
 
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 10,
@@ -49,14 +53,6 @@
                     }
                 })(marker, i));
             }
-
-            var kadikoyContent = '<p>Adres : İskele Meydanı Kadıköy Haldun Taner Sahnesi Yanı Kadıköy/İSTANBUL \
-                Çalışma Saatleri: Pazartesi - Salı - Çarşamba - Perşembe 14.00 - 17.00 / Cuma ve Hafta Sonu 10.00 - 19.00(Ramazan Ayı Süresince Kapalı Olacaktır)</p>';
-            var mecidiyekoyContent = 'Adres : Nuh kuyusu cad. No:56 Üsküdar/İSTANBUL \
-                Tel: 444 9 526 Faks: (0216) 342 05 75\
-                Çalışma Saatleri: H.İçi: 08.00 - 11: 30 / 13.00 - 16: 30(Hafta Sonu ve Resmi Tatillerde Kapalıdır) 29 - 30 - 31 Mayıs 2019 Tarihlerinde Kapalı Olacaktır';
-            var bakirkoyContent = 'Adres : Atatürk Mah. Çavuşbaşı Cad. No: 9 Santral Camii Yanı Ümraniye/ İstanbul \
-                Çalışma Saatleri: Her Salı 10.00 - 14.00 / 15.00 - 19.00';
 
             infoWindow = new google.maps.InfoWindow;
 
